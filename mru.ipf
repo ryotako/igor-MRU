@@ -44,7 +44,7 @@ End
 
 // Hooks
 
-Function AfterFileOpenHook(rN, fileName, path, type, creator, kind)
+static Function AfterFileOpenHook(rN, fileName, path, type, creator, kind)
    Variable rN, kind
    String fileName, path, type, creator
 
@@ -54,9 +54,9 @@ Function AfterFileOpenHook(rN, fileName, path, type, creator, kind)
 
 End
 
-Function BeforeExperimentSaveHook(rN, fileName, path, type, creator, kind)
-   Variable rN,kind
-   String fileName,path,type,creator
+static Function BeforeExperimentSaveHook(rN, fileName, path, type, creator, kind)
+   Variable rN, kind
+   String fileName, path, type, creator
 
 	PathInfo $path
 	MRU_Add( S_path + fileName )
