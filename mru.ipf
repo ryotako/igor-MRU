@@ -6,12 +6,7 @@ constant MRU_MaxFileSize = 1000
 // Public Functions
 
 Function/WAVE MRU_Wave()
-	WAVE/T w = root:Packages:MRU:W_path
-	if(WaveExists(w))
-		return w
-	else
-		return MRU_Load()
-	endif
+	return MRU_Load()
 End
 
 Function/S MRU_List()
@@ -49,9 +44,7 @@ static Function AfterFileOpenHook(rN, fileName, path, type, creator, kind)
    String fileName, path, type, creator
 
 	PathInfo $path
-	WAVE/T w = MRU_Add( S_path + fileName )
-	MRU_Cache( w )
-
+	MRU_Add( S_path + fileName )
 End
 
 static Function BeforeExperimentSaveHook(rN, fileName, path, type, creator, kind)
@@ -65,23 +58,15 @@ End
 
 // Static Functions
 
-static Function/WAVE MRU_Add(path)
+static Function MRU_Add(path)
 	String path
-	WAVE/T w = MRU_Load()
-	
+
+	WAVE/T w = MRU_Load()	
 	Extract/T/O w, w, cmpstr(w, path)
 	InsertPoints 0, 1, w
 	w[0] = path
 	
 	MRU_Save(w)
-	return w
-End
-
-static Function MRU_Cache(w)
-	WAVE/T w
-	NewDataFolder/O root:Packages
-	NewDataFolder/O root:Packages:MRU
-	Duplicate/O/T w root:Packages:MRU:W_path
 End
 
 static Function MRU_Save(paths)
