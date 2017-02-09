@@ -1,5 +1,5 @@
-#pragma rtGlobals=3		// Use modern global access method and strict wave access.
-#pragma ModuleName=MRU
+#pragma rtGlobals = 3	// Use modern global access method and strict wave access.
+#pragma ModuleName = MRU
 
 constant MRU_MaxFileSize = 1000
 
@@ -39,7 +39,7 @@ End
 
 static Function MRU_MenuCommand()
 	GetLastUserMenuInfo
-	Execute/P "LOADFILE " + S_Value
+	MRU_Open(S_Value)
 End
 
 // Hooks
@@ -84,9 +84,10 @@ static Function MRU_Cache(w)
 	Duplicate/O/T w root:Packages:MRU:W_path
 End
 
-static Function MRU_Save(w)
-	WAVE/T w
+static Function MRU_Save(paths)
+	WAVE/T paths
 	
+	Duplicate/FREE paths, w
 	DeletePoints MRU_MaxFileSize, DimSize(w, 0), w
 	
 	NewPath/C/Q MruTmpPath, ParseFilePath(1, FunctionPath(""), ":", 1, 0)
