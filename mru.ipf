@@ -1,7 +1,7 @@
 #pragma rtGlobals = 3	// Use modern global access method and strict wave access.
 #pragma ModuleName = MRU
 
-constant MRU_MaxFileSize = 1000
+constant MRU_MaxEntries = 1000 // `inf` is available
 
 // Public Functions
 
@@ -72,8 +72,7 @@ End
 static Function MRU_Save(paths)
 	WAVE/T paths
 	
-	Duplicate/FREE paths, w
-	DeletePoints MRU_MaxFileSize, DimSize(w, 0), w
+	Extract/T/FREE paths, w, p < MRU_MaxEntries
 	
 	NewPath/C/Q MruTmpPath, ParseFilePath(1, FunctionPath(""), ":", 1, 0)
 	if(V_Flag == 0)
