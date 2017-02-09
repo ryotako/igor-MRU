@@ -33,7 +33,7 @@ End
 
 Menu "File"
 	SubMenu "MRU"
-		MRU_List(), /Q, MRU#MRU_MenuCommand()
+		"\M0" + MRU_List(), /Q, MRU#MRU_MenuCommand()
 	End
 End
 
