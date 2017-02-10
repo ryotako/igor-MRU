@@ -1,5 +1,5 @@
 # igor-MRU
-Minimal Procedure to manage Most Recently Used experiments
+Minimal procedure to manage the **M**ost **R**ecently **U**sed experiments
 
 # Functions
 
