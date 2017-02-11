@@ -1,3 +1,4 @@
+:us:[:jp:](https://github.com/ryotako/igor-MRU/wiki)
 # igor-MRU
 Minimal procedure to manage the **M**ost **R**ecently **U**sed experiments
 
