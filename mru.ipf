@@ -1,7 +1,7 @@
 #pragma rtGlobals = 3	// Use modern global access method and strict wave access.
 #pragma ModuleName = MRU
 
-constant MRU_MaxEntries = 1000 // `inf` is available
+static constant MRU_MaxEntries = 1000 // `inf` is available
 
 // Public Functions
 
