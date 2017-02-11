@@ -74,23 +74,23 @@ static Function MRU_Save(paths)
 	
 	Extract/T/FREE paths, w, p < MRU_MaxEntries
 	
-	NewPath/C/Q MruTmpPath, ParseFilePath(1, FunctionPath(""), ":", 1, 0)
+	NewPath/C/O/Q MRU, ParseFilePath(1, FunctionPath(""), ":", 1, 0)
 	if(V_Flag == 0)
 		Variable ref
-		Open/P=MruTmpPath/Z ref as "mru.txt"
+		Open/P=MRU/Z ref as "mru.txt"
 		if(V_Flag == 0)
 			wfprintf ref, "%s\n", w
 			Close ref
 		endif	
-		KillPath MruTmpPath
+		KillPath/Z MRU
 	endif
 End
 
 static Function/WAVE MRU_Load()
-	NewPath/C/Q MruTmpPath, ParseFilePath(1, FunctionPath(""), ":", 1, 0)
+	NewPath/C/O/Q MRU, ParseFilePath(1, FunctionPath(""), ":", 1, 0)
 	if(!V_Flag)
 		Variable ref
-		Open/P=MruTmpPath/R/Z ref as "mru.txt"	
+		Open/P=MRU/R/Z ref as "mru.txt"	
 		if(!V_Flag)
 			String buf = ""
 			do
@@ -100,10 +100,10 @@ static Function/WAVE MRU_Load()
 			while(strlen(line))
 			Close ref			
 			Make/FREE/T/N=(ItemsInList(buf, "\r")) w = StringFromList(p, buf, "\r")
-			KillPath MruTmpPath
+			KillPath/Z MRU
 			return w		
 		endif
-		KillPath MruTmpPath
+		KillPath MRU
 	endif
 	Make/FREE/T/N=0 w
 	return w
