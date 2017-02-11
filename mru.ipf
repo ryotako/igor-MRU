@@ -26,7 +26,7 @@ End
 
 // Menu
 
-Menu "File"
+Menu "File", dynamic
 	SubMenu "MRU"
 		"\M0" + MRU_List(), /Q, MRU#MRU_MenuCommand()
 	End
