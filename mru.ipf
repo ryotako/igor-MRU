@@ -9,16 +9,6 @@ Function/WAVE MRU_Wave()
 	return MRU_Load()
 End
 
-Function/S MRU_List()
-	WAVE/T w = MRU_Wave()
-	String list = ""
-	Variable i, N = DimSize(w, 0)
-	for(i = 0; i < N; i += 1)
-		list = AddListItem(w[i], list, ";", inf)
-	endfor
-	return list
-End
-
 Function MRU_Open(path)
 	String path
 	Execute/P "LOADFILE " + path
@@ -28,8 +18,20 @@ End
 
 Menu "File", dynamic
 	SubMenu "MRU"
-		"\M0" + MRU_List(), /Q, MRU#MRU_MenuCommand()
+		MRU#MRU_MenuItems(), /Q, MRU#MRU_MenuCommand()
 	End
+End
+
+static Function/S MRU_MenuItems()
+	WAVE/T w = MRU_Wave()
+	String list = ""
+
+	Variable i, N = DimSize(w, 0)
+	for(i = 0; i < N; i += 1)
+		list = AddListItem("\M0" + w[i], list, ";", inf)
+	endfor
+	
+	return list
 End
 
 static Function MRU_MenuCommand()
