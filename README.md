@@ -3,7 +3,7 @@
 Minimal procedure to manage the **M**ost **R**ecently **U**sed experiments
 
 This procedure records path names of opened experiment files.
-The difference of builtin `Recent Experiments` menu is:
+The difference from builtin `Recent Experiments` menu is:
 
 - Number of records. The default is 1000. In Igor Pro 6 for Macintosh, all of them is displayed in a menu bar.
 - Functions provide recorded path names. Users can make advanced functions to manage recently used files.
